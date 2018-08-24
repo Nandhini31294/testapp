@@ -115,11 +115,12 @@
 							//perform the request
 							var req = ocpu.rpc("read_csv", {
 							filename : filename
-							}, function(output){
-							$("#output").text(output.message);
-							alert("Read Successful....");
-							alert("Cleaning in Progress....");
+							}, function(session){
+							session.getConsole(function(outtxt){
+								$("#output").text(outtxt); 
+								alert("Read Successful....");
 							});
+							
 							
 							//if R returns an error, alert the error message
 							req.fail(function(){
